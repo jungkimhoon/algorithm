@@ -21,9 +21,9 @@ public class Main {
 				for(int k=0; k<city.length; k++){
 					if(i==j || j==k || k==i) continue;
 					
-					if(city[i][j] == city[i][k] + city[k][j]) {
+					if(city[i][j] == city[i][k] + city[k][j]) {최소경로 == 거쳐가는길일떄
 						newCity[i][j] = 0;						
-					}else if(city[i][j] > city[i][k] + city[k][j]) {
+					}else if(city[i][j] > city[i][k] + city[k][j]) { //최소경로보다 거쳐가는게 빠르면 -1
 						System.out.println("-1");
 						return;
 					}
