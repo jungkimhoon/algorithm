@@ -1,28 +1,41 @@
-
 import java.io.*;
+import java.util.StringTokenizer;
 
 public class Main {	
-	public static void main(String[] args) throws IOException{
+	public static void main(String[] args) throws Exception {
+		// TODO Auto-generated method stub
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		String str = br.readLine();
-		int[][] arr = new int[26][2];
-		int num = 0;
-		int count = 0;
-		for(int i=0; i<26; i++) {
-			arr[i][0] = arr[i][1] = 0;
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		
+		int n = Integer.parseInt(st.nextToken());
+		int k = Integer.parseInt(st.nextToken());
+		int b = Integer.parseInt(st.nextToken());
+		boolean[] arr = new boolean[n];
+		
+		for(int i=0; i<n; i++) {
+			arr[i] = false;
 		}
 		
-		for(int i=0; i<str.length(); i++) {
-			if(arr[str.charAt(i)-'A'][0] > 0) arr[str.charAt(i)-'A'][1] = ++num;
-			else arr[str.charAt(i)-'A'][0] = ++num;
+		for(int i=0; i<b; i++) {
+			arr[Integer.parseInt(br.readLine())-1] = true;
 		}
 		
-		for(int i=0; i<26; i++) {
-			for(int j=0; j<26; j++) {
-				if(arr[i][0] < arr[j][0] && arr[i][1] > arr[j][0] && arr[i][1] < arr[j][1]) count++;
-			}
-		}
+		int sw = 0;
+		int sum = Integer.MAX_VALUE;
 		
-		System.out.println(count);
+		
+		if(n == b) System.out.println(n);
+		else {
+			while(true) {
+				int count = 0;
+				for(int i=0+sw; i<k+sw; i++) {
+					if(arr[i]) count++;
+				}			
+				sum = Math.min(sum, count);
+				if(sw == n-k) break;
+				sw++;
+			}		
+			System.out.println(sum);
+		}
 	}
 }
