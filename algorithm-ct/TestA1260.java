@@ -1,12 +1,9 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.StringTokenizer;
+import java.util.*;
 
-public class Test1260 {
+public class TestA1260 {
     static ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
     static boolean[] visited;
 
@@ -18,14 +15,15 @@ public class Test1260 {
         int m = Integer.parseInt(st.nextToken());
         int v = Integer.parseInt(st.nextToken());
 
-        for (int i = 0; i <= n; i++) {
+        for(int i=0; i<=n; i++) {
             graph.add(new ArrayList<>());
         }
-
+        
         visited = new boolean[n + 1];
 
-        for (int i = 1; i <= m; i++) {
+        for(int i = 1; i <= m; i++) {
             st = new StringTokenizer(br.readLine());
+
             int x = Integer.parseInt(st.nextToken());
             int y = Integer.parseInt(st.nextToken());
 
@@ -39,33 +37,33 @@ public class Test1260 {
         bfs(v);
     }
 
-    private static void bfs(int v) {
-        Queue<Integer> q = new LinkedList<>();
-        q.add(v);
+    public static void dfs(int v) {
+        visited[v] = true;
+        System.out.print(v + " ");
+
+        for(int value: graph.get(v)){
+            if(!visited[value]) {
+                dfs(value);                
+            }
+        }
+    }
+
+    public static void bfs(int v) {
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(v);
         visited[v] = true;
 
-        while (!q.isEmpty()) {
-            int value = q.poll();
+        while(!queue.isEmpty()) {
+            int value = queue.poll();
             System.out.print(value + " ");
 
-            for (int e : graph.get(value)) {
-                if (!visited[e]) {
+            for(int e : graph.get(value)){
+                if(!visited[e]) {
                     visited[e] = true;
-                    q.add(e);
+                    queue.add(e);
                 }
             }
         }
+        
     }
-
-
-    private static void dfs(int v) {
-        visited[v] = true;
-        System.out.print(v + " ");
-        for (int value : graph.get(v)) {
-            if(!visited[value]) {
-                dfs(value);
-            }
-        }
-    }
-
 }
