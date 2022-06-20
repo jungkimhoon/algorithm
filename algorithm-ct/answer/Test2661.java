@@ -37,7 +37,7 @@ public class Test2661 {
 
 		for(int i=1; i<=length; i++) {
 			String a = result.substring(length - i, length);
-			String b = result.substring(length - i - i, length - i)
+			String b = result.substring(length - i - i, length - i);
 
 			if(a.equals(b)) {
 				return false;
