@@ -14,8 +14,6 @@ public class Test2294 {
         int n = Integer.parseInt(st.nextToken());
         int k = Integer.parseInt(st.nextToken());
 
-
-
         int[] coin = new int[n + 1];
         for (int i = 1; i <= n; i++) {
             coin[i] = Integer.parseInt(br.readLine());
